@@ -20,7 +20,7 @@ function formatAndSendTweet(event) {
             : ` ${tokenSymbol}`
     );
 
-    const tweetText = `${tokenName} bought for ${formattedTokenPrice}${formattedPriceSymbol} ($${formattedUsdPrice}). Aradena welcomes you ⚔️🍻! https://warriorsofaradena.com/ ${openseaLink}`;
+    const tweetText = `${tokenName} was bought for ${formattedTokenPrice}${formattedPriceSymbol} ($${formattedUsdPrice}). Aradena welcomes you ${tokenName} ⚔️🍻! #NFT #NFTgaming ${openseaLink}`;
 
     console.log(tweetText);
 
