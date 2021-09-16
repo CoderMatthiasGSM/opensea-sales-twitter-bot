@@ -20,7 +20,7 @@ function formatAndSendTweet(event) {
             : ` ${tokenSymbol}`
     );
 
-    const tweetText = `${tokenName} was bought for ${formattedTokenPrice}${formattedPriceSymbol} ($${formattedUsdPrice}). Aradena welcomes you ⚔️🍻! #NFT #NFTgaming #MedievalArt ${openseaLink}`;
+    const tweetText = `${tokenName} has joined a new guild for ${formattedTokenPrice}${formattedPriceSymbol} ($${formattedUsdPrice}). Aradena welcomes you ⚔️🍻! #NFT #NFTgaming #MedievalArt ${openseaLink}`;
 
     console.log(tweetText);
 
