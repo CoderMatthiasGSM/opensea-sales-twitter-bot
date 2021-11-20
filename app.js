@@ -6,7 +6,7 @@ const tweet = require('./tweet');
 
 function formatAndSendTweet(event) {
     const tokenName = _.get(event, ['asset', 'name']);
-    if (tokenName == "null"){
+    if (tokenName === null){
         tokenName = "A warrior"}
     const image = _.get(event, ['asset', 'image_url']);
     const openseaLink = _.get(event, ['asset', 'permalink']);
