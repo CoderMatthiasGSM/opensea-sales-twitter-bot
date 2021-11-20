@@ -7,7 +7,7 @@ const tweet = require('./tweet');
 function formatAndSendTweet(event) {
     tokenName = _.get(event, ['asset', 'name']);
     if (tokenName === null){
-        tokenName = "A warrior"}
+        tokenName = ("Women of Aradena: Warrior " + _.get(event, ['asset', 'token_id']) )}
     const image = _.get(event, ['asset', 'image_url']);
     const openseaLink = _.get(event, ['asset', 'permalink']);
     const totalPrice = _.get(event, 'total_price');
