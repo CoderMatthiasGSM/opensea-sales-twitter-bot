@@ -6,8 +6,8 @@ const tweet = require('./tweet');
 
 function formatAndSendTweet(event) {
     const tokenName = _.get(event, ['asset', 'name']);
-    if (tokenName == 'null'){
-        tokenName = 'A warrior'}
+    if (tokenName == "null"){
+        tokenName = "A warrior"}
     const image = _.get(event, ['asset', 'image_url']);
     const openseaLink = _.get(event, ['asset', 'permalink']);
     const totalPrice = _.get(event, 'total_price');
@@ -56,7 +56,7 @@ setInterval(() => {
 }, 60000);
 
 setInterval(() => {
-    const lastMinute = moment().startOf('minute').subtract(299, "seconds").unix();
+    const lastMinute = moment().startOf('minute').subtract(1299, "seconds").unix();
     
     axios.get('https://api.opensea.io/api/v1/events', {
         params: {
