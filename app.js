@@ -41,11 +41,35 @@ setInterval(() => {
             occurred_after: lastMinute,
             only_opensea: 'false'
         }, 
-        headers: {Accept: 'application/json', 'X-API-KEY': process.env.ACCESS_TOKEN_SECRET}
+        headers: {Accept: 'application/json', 'X-API-KEY': process.env.process.env.API_KEY}
     }).then((response) => {
         const events = _.get(response, ['data', 'asset_events']);
 
-        console.log(`${events.length} sales in the last 5 minutes...`);
+        console.log(`${events.length} genesis sales in the last 5 minutes...`);
+
+        _.each(events, (event) => {
+            return formatAndSendTweet(event);
+        });
+    }).catch((error) => {
+        console.error(error);
+    });
+}, 60000);
+
+setInterval(() => {
+    const lastMinute = moment().startOf('minute').subtract(299, "seconds").unix();
+    
+    axios.get('https://api.opensea.io/api/v1/events', {
+        params: {
+            collection_slug: process.env.OPENSEA_COLLECTION_SLUG2,
+            event_type: 'successful',
+            occurred_after: lastMinute,
+            only_opensea: 'false'
+        }, 
+        headers: {Accept: 'application/json', 'X-API-KEY': process.env.API_KEY}
+    }).then((response) => {
+        const events = _.get(response, ['data', 'asset_events']);
+
+        console.log(`${events.length} female sales in the last 5 minutes...`);
 
         _.each(events, (event) => {
             return formatAndSendTweet(event);
