@@ -32,7 +32,7 @@ function formatAndSendTweet(event) {
 // Poll OpenSea every minute & retrieve all sales for a given collection in the last minute
 // Then pass those events over to the formatter before tweeting
 setInterval(() => {
-    const lastMinute = moment().startOf('minute').subtract(299, "seconds").unix();
+    const lastMinute = moment().startOf('minute').subtract(61, "seconds").unix();
     
     axios.get('https://api.opensea.io/api/v1/events', {
         params: {
@@ -45,7 +45,7 @@ setInterval(() => {
     }).then((response) => {
         const events = _.get(response, ['data', 'asset_events']);
 
-        console.log(`${events.length} genesis sales in the last 5 minutes...`);
+        console.log(`${events.length} genesis sales in the last minute...`);
 
         _.each(events, (event) => {
             return formatAndSendTweet(event);
@@ -56,7 +56,7 @@ setInterval(() => {
 }, 60000);
 
 setInterval(() => {
-    const lastMinute = moment().startOf('minute').subtract(11299, "seconds").unix();
+    const lastMinute = moment().startOf('minute').subtract(61, "seconds").unix();
     
     axios.get('https://api.opensea.io/api/v1/events', {
         params: {
@@ -69,7 +69,7 @@ setInterval(() => {
     }).then((response) => {
         const events = _.get(response, ['data', 'asset_events']);
 
-        console.log(`${events.length} female sales in the last 5 minutes...`);
+        console.log(`${events.length} female sales in the last minute...`);
 
         _.each(events, (event) => {
             return formatAndSendTweet(event);
