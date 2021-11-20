@@ -41,7 +41,7 @@ setInterval(() => {
             occurred_after: lastMinute,
             only_opensea: 'false'
         }, 
-        headers: {Accept: 'application/json', 'X-API-KEY': '7a3e6b0eafd24c31afe1c18f56bdcf93'}
+        headers: {Accept: 'application/json', 'X-API-KEY': process.env.ACCESS_TOKEN_SECRET}
     }).then((response) => {
         const events = _.get(response, ['data', 'asset_events']);
 
