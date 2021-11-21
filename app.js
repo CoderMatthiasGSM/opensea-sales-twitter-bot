@@ -5,7 +5,7 @@ const { ethers } = require('ethers');
 const tweet = require('./tweet');
 
 function formatAndSendTweet(event) {
-    tokenName = _.get(event, ['asset', 'name']);
+    var tokenName = _.get(event, ['asset', 'name']);
     if (tokenName === null){
         tokenName = ("Women of Aradena: Warrior " + _.get(event, ['asset', 'token_id']) )}
     const image = _.get(event, ['asset', 'image_url']);
