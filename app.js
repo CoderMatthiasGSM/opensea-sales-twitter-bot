@@ -56,7 +56,7 @@ setInterval(() => {
 }, 60000);
 
 setInterval(() => {
-    const lastMinute = moment().startOf('minute').subtract(61, "seconds").unix();
+    const lastMinute = moment().startOf('minute').subtract(1261, "seconds").unix();
     
     axios.get('https://api.opensea.io/api/v1/events', {
         params: {
