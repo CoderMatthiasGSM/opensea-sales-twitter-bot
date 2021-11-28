@@ -5,9 +5,15 @@ const { ethers } = require('ethers');
 const tweet = require('./tweet');
 
 function formatAndSendTweet(event) {
-    var tokenName = _.get(event, ['asset', 'name']);
-    if (tokenName === null){
-        tokenName = ("Women of Aradena: Warrior " + _.get(event, ['asset', 'token_id']) )}
+    var tokenContract = _.get(event, ['asset','asset_contract','name']);
+    var tokenName; 
+    if (tokenContract == "Warriors of Aradena"){
+        tokenName = ("Warrior " + _.get(event, ['asset', 'token_id']) );}
+    if (tokenContract == "Women of Aradena"){
+        tokenName = ("Women of Aradena: Warrior " + _.get(event, ['asset', 'token_id']) );}
+    if (tokenContract === null){
+        tokenName = ("Warrior " + _.get(event, ['asset', 'token_id']) + "~"); }
+    
     const image = _.get(event, ['asset', 'image_url']);
     const openseaLink = _.get(event, ['asset', 'permalink']);
     const totalPrice = _.get(event, 'total_price');
