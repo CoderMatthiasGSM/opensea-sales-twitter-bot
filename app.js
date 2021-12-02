@@ -11,6 +11,8 @@ function formatAndSendTweet(event) {
         tokenName = ("Warrior " + _.get(event, ['asset', 'token_id']) );}
     if (tokenContract == "Women of Aradena"){
         tokenName = ("Women of Aradena: Warrior " + _.get(event, ['asset', 'token_id']) );}
+    if (tokenContract == "Aradena Comics"){
+        tokenName = ("Aradena Uprising: Issue 1 #" + _.get(event, ['asset', 'token_id']) );}
     if (tokenContract === null){
         tokenName = ("Warrior " + _.get(event, ['asset', 'token_id']) + "~"); }
     
@@ -28,11 +30,14 @@ function formatAndSendTweet(event) {
             : ` ${tokenSymbol}`
     );
 
-    const tweetText = `${tokenName} has joined a new guild for ${formattedTokenPrice}${formattedPriceSymbol} ($${formattedUsdPrice}). Aradena welcomes you ⚔️🍻! #NFT #StrategyGame #MedievalNFT ${openseaLink}`;
-
-    console.log(tweetText);
-
-    return tweet.handleDupesAndTweet(tokenName, tweetText, image);
+    if ((tokenContract == "Women of Aradena") || (tokenContract == "Warriors of Aradena")) {
+        const tweetText = `${tokenName} has joined a new guild for ${formattedTokenPrice}${formattedPriceSymbol} ($${formattedUsdPrice}). Aradena welcomes you ⚔️🍻! #NFT #StrategyGame #MedievalNFT ${openseaLink}`;
+        console.log(tweetText);
+        return tweet.handleDupesAndTweet(tokenName, tweetText, image);}
+    else if (tokenContract == "Aradena Comics") {
+        const tweetText = `${tokenName} has joined a new library for ${formattedTokenPrice}${formattedPriceSymbol} ($${formattedUsdPrice}). Happy reading📚! #NFT #StrategyGame #MedievalNFT ${openseaLink}`;
+        console.log(tweetText);
+        return tweet.handleDupesAndTweet(tokenName, tweetText, image);}
 }
 
 // Poll OpenSea every minute & retrieve all sales for a given collection in the last minute
@@ -76,6 +81,30 @@ setInterval(() => {
         const events = _.get(response, ['data', 'asset_events']);
 
         console.log(`${events.length} female sales in the last minute...`);
+
+        _.each(events, (event) => {
+            return formatAndSendTweet(event);
+        });
+    }).catch((error) => {
+        console.error(error);
+    });
+}, 60000);
+
+setInterval(() => {
+    const lastMinute = moment().startOf('minute').subtract(101, "seconds").unix();
+    
+    axios.get('https://api.opensea.io/api/v1/events', {
+        params: {
+            collection_slug: process.env.OPENSEA_COLLECTION_SLUG3,
+            event_type: 'successful',
+            occurred_after: lastMinute,
+            only_opensea: 'false'
+        }, 
+        headers: {Accept: 'application/json', 'X-API-KEY': process.env.API_KEY}
+    }).then((response) => {
+        const events = _.get(response, ['data', 'asset_events']);
+
+        console.log(`${events.length} comic sales in the last minute...`);
 
         _.each(events, (event) => {
             return formatAndSendTweet(event);
