@@ -12,7 +12,7 @@ function formatAndSendTweet(event) {
     if (tokenContract == "Women of Aradena"){
         tokenName = ("Women of Aradena: Warrior " + _.get(event, ['asset', 'token_id']) );}
     if (tokenContract == "Aradena Comics"){
-        tokenName = ("Aradena Uprising: Issue 1 #" + _.get(event, ['asset', 'token_id']) );}
+        tokenName = ( _.get(event, ['asset', 'name']) + " #" + _.get(event, ['asset', 'token_id']) );}
     if (tokenContract === null){
         tokenName = ("Warrior " + _.get(event, ['asset', 'token_id']) + "~"); }
     
