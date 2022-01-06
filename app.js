@@ -7,7 +7,7 @@ const tweet = require('./tweet');
 function formatAndSendTweet(event) {
     var tokenContract = _.get(event, ['asset','asset_contract','name']);
     var tokenName; 
-    var purchaseName = (_.get(event, ['asset','last_sale','transaction','from_account','user','username']) + "'s");
+    var purchaseName = (_.get(event, ['winner_account','user','username']) + "'s");
     if (tokenContract == "Warriors of Aradena"){
         tokenName = ("Warrior " + _.get(event, ['asset', 'token_id']) );}
     if (tokenContract == "Women of Aradena"){
@@ -16,7 +16,7 @@ function formatAndSendTweet(event) {
         tokenName = ( _.get(event, ['asset', 'name']) + " #" + _.get(event, ['asset', 'token_id']) );}
     if (tokenContract === null){
         tokenName = ("Warrior " + _.get(event, ['asset', 'token_id']) + "~"); }
-    if (purchaseName === null){
+    if (purchaseName === undefined){
         purchaseName = ("a new");}
     
     const image = _.get(event, ['asset', 'image_url']);
