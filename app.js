@@ -16,7 +16,7 @@ function formatAndSendTweet(event) {
         tokenName = ( _.get(event, ['asset', 'name']) + " #" + _.get(event, ['asset', 'token_id']) );}
     if (tokenContract === null){
         tokenName = ("Warrior " + _.get(event, ['asset', 'token_id']) + "~"); }
-    if (purchaseName === undefined){
+    if (purchaseName == null){
         purchaseName = ("a new");}
     
     const image = _.get(event, ['asset', 'image_url']);
