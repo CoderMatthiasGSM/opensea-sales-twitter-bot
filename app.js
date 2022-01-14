@@ -18,6 +18,8 @@ function formatAndSendTweet(event) {
         tokenName = ("Warrior " + _.get(event, ['asset', 'token_id']) + "~"); }
     if (purchaseName == null){
         purchaseName = ("a new");}
+    if (purchaseName == undefined){
+        purchaseName = ("a new");}
     
     const image = _.get(event, ['asset', 'image_url']);
     const openseaLink = _.get(event, ['asset', 'permalink']);
