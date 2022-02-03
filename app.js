@@ -36,11 +36,11 @@ function formatAndSendTweet(event) {
     );
 
     if ((tokenContract == "Women of Aradena") || (tokenContract == "Warriors of Aradena")) {
-        const tweetText = `${tokenName} has joined ${purchaseName} guild for ${formattedTokenPrice}${formattedPriceSymbol} ($${formattedUsdPrice}). Aradena welcomes you ⚔️🍻! #NFT #StrategyGame #MedievalNFT ${openseaLink}`;
+        const tweetText = `${tokenName} has joined ${purchaseName} guild for ${formattedTokenPrice}${formattedPriceSymbol} ($${formattedUsdPrice}). Aradena welcomes you ⚔️🍻! #NFT #StrategyGame #PlayToEarn ${openseaLink}`;
         console.log(tweetText);
         return tweet.handleDupesAndTweet(tokenName, tweetText, image);}
     else if (tokenContract == "Aradena Comics") {
-        const tweetText = `${tokenName} has joined ${purchaseName} library for ${formattedTokenPrice}${formattedPriceSymbol} ($${formattedUsdPrice}). Happy reading📚! #NFT #StrategyGame #MedievalNFT ${openseaLink}`;
+        const tweetText = `${tokenName} has joined ${purchaseName} library for ${formattedTokenPrice}${formattedPriceSymbol} ($${formattedUsdPrice}). Happy reading📚! #NFT #StrategyGame #PlayToEarn ${openseaLink}`;
         console.log(tweetText);
         return tweet.handleDupesAndTweet(tokenName, tweetText, image);}
 }
